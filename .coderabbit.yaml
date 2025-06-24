@@ -9,7 +9,7 @@ reviews:
   high_level_summary_placeholder: '@coderabbitai summary'
   high_level_summary_in_walkthrough: false
   auto_title_placeholder: '@coderabbitai'
-  auto_title_instructions: "Write a concise, descriptive PR title summarizing the main changes, using imperative mood and including relevant context (e.g., affected modules, new features, or fixes)."auto_title_instructions: |
+  auto_title_instructions: |
     Generate a pull request title following the Conventional Commits specification. 
     Use the format: <type>(<scope>): <short summary>
     - type: feat, fix, chore, docs, style, refactor, perf, test, build, ci, or revert
