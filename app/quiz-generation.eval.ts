@@ -10,21 +10,21 @@ evalite("Quiz Generation Quality", {
     {
       input: `Machine learning is a subset of artificial intelligence that focuses on developing algorithms and statistical models that enable computer systems to improve their performance on a specific task through experience, without being explicitly programmed for every scenario. The field has grown tremendously over the past decade, with applications ranging from image recognition and natural language processing to recommendation systems and autonomous vehicles. Deep learning, a subset of machine learning, has been particularly successful in achieving breakthrough results in various domains.`,
       expected: {
-        expectedQuestions: 3,
+        expectedQuestions: 6,
         mustContainTopics: ["machine learning", "artificial intelligence", "deep learning", "algorithms", "applications"]
       },
     },
     {
       input: `Climate change refers to long-term shifts in global temperatures and weather patterns. While climate variations are natural, scientific evidence shows that human activities, particularly the emission of greenhouse gases from burning fossil fuels, have been the dominant driver of climate change since the mid-20th century. The effects include rising sea levels, more frequent extreme weather events, and disruptions to ecosystems worldwide.`,
       expected: {
-        expectedQuestions: 3,
+        expectedQuestions: 6,
         mustContainTopics: ["climate change", "greenhouse gases", "fossil fuels", "temperature", "weather"]
       },
     },
     {
       input: `The Renaissance was a period of European cultural, artistic, political and economic rebirth following the Middle Ages. Generally described as taking place from the 14th century to the 17th century, it promoted the rediscovery of classical philosophy, literature and art. Some of the greatest thinkers, authors, statesmen, scientists and artists in human history thrived during this era, while global exploration opened up new lands and cultures to European commerce.`,
       expected: {
-        expectedQuestions: 3,
+        expectedQuestions: 6,
         mustContainTopics: ["Renaissance", "Middle Ages", "14th century", "17th century", "philosophy", "exploration"]
       },
     },

@@ -142,6 +142,9 @@ export default function QuizPage() {
   };
 
   const calculateScore = () => {
+    if (userAnswers.length === 0) {
+      return 0;
+    }
     const correctAnswers = userAnswers.filter(answer => answer.isCorrect).length;
     return Math.round((correctAnswers / userAnswers.length) * 100);
   };

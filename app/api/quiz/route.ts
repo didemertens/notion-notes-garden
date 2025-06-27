@@ -23,9 +23,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (file.type !== 'text/plain') {
+    // Define allowed MIME types and file size limit
+    const allowedMimeTypes = [
+      'text/plain',
+      'text/csv',
+      'text/markdown',
+      'text/x-markdown',
+      'application/json',
+      'application/xml',
+      'text/xml'
+    ];
+    
+    const maxFileSize = 5 * 1024 * 1024; // 5MB limit
+
+    // Validate file type
+    if (!allowedMimeTypes.includes(file.type)) {
       return NextResponse.json(
-        { error: 'Only text files are supported' },
+        { error: `Unsupported file type. Allowed types: ${allowedMimeTypes.join(', ')}` },
+        { status: 400 }
+      );
+    }
+
+    // Validate file size
+    if (file.size > maxFileSize) {
+      return NextResponse.json(
+        { error: `File too large. Maximum size is ${maxFileSize / (1024 * 1024)}MB` },
         { status: 400 }
       );
     }
@@ -82,6 +104,19 @@ export async function POST(request: NextRequest) {
         { error: 'Invalid quiz structure' },
         { status: 500 }
       );
+    }
+
+    // Validate each question's correctAnswer is within valid range
+    for (let i = 0; i < quizData.questions.length; i++) {
+      const question = quizData.questions[i];
+      if (typeof question.correctAnswer !== 'number' || 
+          question.correctAnswer < 0 || 
+          question.correctAnswer > 3) {
+        return NextResponse.json(
+          { error: `Question ${i + 1} has invalid correctAnswer: must be a number between 0 and 3` },
+          { status: 500 }
+        );
+      }
     }
 
     return NextResponse.json({
