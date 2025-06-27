@@ -1,102 +1,141 @@
-import Image from "next/image";
+import { Sprout, TreeDeciduous, Flower } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen" style={{background: "var(--background)"}}>
+      {/* Skip Navigation */}
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded">
+        Skip to main content
+      </a>
+      
+      {/* Navigation */}
+      <nav className="nav">
+        <div className="nav-content">
+          <ul className="nav-links" role="list">
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#portfolio">PORTFOLIO</a></li>
+          </ul>
+          <div className="handwritten text-lg">
+            <a href="#home" aria-label="Notes Garden - Go to homepage">Notes Garden</a>
+          </div>
+          <ul className="nav-links" role="list">
+            <li><a href="/quiz">QUIZ MAKER</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+          </ul>
         </div>
+      </nav>
+
+      <main style={{paddingTop: "80px"}}>
+        {/* Hero Section */}
+        <div className="wrapper" style={{paddingTop: "var(--space-xl)"} as React.CSSProperties}>
+          <div className="hero-overlay" style={{marginBottom: "var(--space-xl)"} as React.CSSProperties}>
+            <div className="hero-content">
+              <div className="handwritten text-lg" style={{opacity: 0.9, marginBottom: "var(--space-s)"} as React.CSSProperties}>
+                Dide's
+              </div>
+              <h1 className="display-serif text-5xl" style={{marginBottom: "var(--space-m)"} as React.CSSProperties}>
+                NOTES GARDEN
+              </h1>
+              <p className="text-lg" style={{opacity: 0.9, maxWidth: "400px", margin: "0 auto var(--space-m)"} as React.CSSProperties}>
+                A sanctuary for thoughts to flourish. Where ideas bloom into wisdom 
+                and connections grow naturally.
+              </p>
+              <button className="btn btn-secondary" style={{background: "rgba(255,255,255,0.9)", color: "var(--foreground)"}}>
+                PLANT IDEAS
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <section className="section-pink">
+          <div className="wrapper">
+            <div className="stack text-center" style={{"--space": "var(--space-l)"} as React.CSSProperties}>
+              <h2 className="display-serif text-4xl text-foreground" style={{marginBottom: "var(--space-m)"} as React.CSSProperties}>
+                CULTIVATE THOUGHTS<br />
+                AND CONNECTIONS
+              </h2>
+              
+              <div className="with-sidebar" style={{"--space": "var(--space-xl)", maxWidth: "1000px", margin: "0 auto"} as React.CSSProperties}>
+                <div className="stack" style={{"--space": "var(--space-s)"} as React.CSSProperties}>
+                  <h3 className="text-lg font-bold text-uppercase tracking-wide">ABOUT US</h3>
+                  <p className="text-base leading-relaxed">
+                    Notes Garden is designed for deep thinkers and creative minds. 
+                    Our platform nurtures the organic growth of ideas through 
+                    thoughtful design and intuitive connections.
+                  </p>
+                  <p className="text-base leading-relaxed">
+                    Every note becomes a seed. Every connection forms roots. 
+                    Watch your digital garden flourish as thoughts interweave 
+                    and knowledge blooms naturally.
+                  </p>
+                </div>
+                
+                <div className="stack" style={{"--space": "var(--space-s)"} as React.CSSProperties}>
+                  <p className="text-base leading-relaxed">
+                    Like tending a real garden, digital note-taking requires patience, 
+                    consistency, and the right environment. We provide the soil - 
+                    you bring the seeds of inspiration.
+                  </p>
+                  <p className="text-base leading-relaxed">
+                    Our philosophy embraces the messy, non-linear nature of human thought. 
+                    Ideas don&apos;t grow in straight lines, and neither should your notes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Portfolio Section */}
+        <section className="section-sage">
+          <div className="wrapper">
+            <div className="stack text-center" style={{"--space": "var(--space-l)"} as React.CSSProperties}>
+              <h2 className="display-serif text-4xl text-foreground" style={{marginBottom: "var(--space-m)"} as React.CSSProperties}>
+                OUR PORTFOLIO
+              </h2>
+              <div className="cluster justify-center" style={{"--space": "var(--space-m)", maxWidth: "1000px", margin: "0 auto"} as React.CSSProperties}>
+                <div className="card" style={{maxWidth: "280px", textAlign: "center"}}>
+                  <div style={{height: "200px", background: "var(--warm)", borderRadius: "4px", marginBottom: "var(--space-s)", display: "flex", alignItems: "center", justifyContent: "center"} as React.CSSProperties}>
+                    <Sprout size={64} color="var(--foreground)" />
+                  </div>
+                  <h3 className="text-lg font-bold" style={{marginBottom: "var(--space-2xs)"} as React.CSSProperties}>Thought Seedlings</h3>
+                  <p className="text-sm">
+                    Quick captures and fleeting ideas that need nurturing
+                  </p>
+                </div>
+                
+                <div className="card" style={{maxWidth: "280px", textAlign: "center"}}>
+                  <div style={{height: "200px", background: "var(--sage)", borderRadius: "4px", marginBottom: "var(--space-s)", display: "flex", alignItems: "center", justifyContent: "center"} as React.CSSProperties}>
+                    <TreeDeciduous size={64} color="var(--foreground)" />
+                  </div>
+                  <h3 className="text-lg font-bold" style={{marginBottom: "var(--space-2xs)"} as React.CSSProperties}>Growing Networks</h3>
+                  <p className="text-sm">
+                    Interconnected concepts forming knowledge webs
+                  </p>
+                </div>
+                
+                <div className="card" style={{maxWidth: "280px", textAlign: "center"}}>
+                  <div style={{height: "200px", background: "var(--clay)", borderRadius: "4px", marginBottom: "var(--space-s)", display: "flex", alignItems: "center", justifyContent: "center"} as React.CSSProperties}>
+                    <Flower size={64} color="var(--foreground)" />
+                  </div>
+                  <h3 className="text-lg font-bold" style={{marginBottom: "var(--space-2xs)"} as React.CSSProperties}>Wisdom Blooms</h3>
+                  <p className="text-sm">
+                    Mature insights ready to be shared and cultivated
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      
+      <footer className="section-cream">
+        <div className="wrapper text-center">
+          <p className="text-sm">
+            Cultivated with intention • Notes Garden © 2025
+          </p>
+        </div>
       </footer>
     </div>
   );
