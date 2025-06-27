@@ -188,7 +188,7 @@ export default function QuizPage() {
                         background: "var(--primary)",
                         color: "white",
                         border: "2px solid var(--primary-dark)",
-                        boxShadow: "0 4px 12px rgba(120, 147, 138, 0.3)",
+                        boxShadow: "0 4px 12px color-mix(in srgb, var(--primary), transparent 30%)",
                       }}
                     >
                       <RotateCcw size={16} />
@@ -334,7 +334,7 @@ export default function QuizPage() {
                           border: "2px solid",
                           borderColor: selectedAnswer === index ? "var(--primary)" : "var(--border)",
                           borderRadius: "8px",
-                          background: selectedAnswer === index ? "rgba(var(--primary-rgb), 0.1)" : "var(--surface)",
+                          background: selectedAnswer === index ? "color-mix(in srgb, var(--primary), transparent 10%)" : "var(--surface)",
                           transition: "all 200ms ease"
                         } as React.CSSProperties}
                       >
@@ -473,7 +473,7 @@ export default function QuizPage() {
                     className="border-2 border-dashed rounded-lg p-8 text-center transition-colors hover:border-primary"
                     style={{
                       borderColor: file ? "var(--primary)" : "var(--muted)",
-                      background: file ? "rgba(var(--primary-rgb), 0.05)" : "transparent"
+                      background: file ? "color-mix(in srgb, var(--primary), transparent 5%)" : "transparent"
                     }}
                   >
                     {file ? (
@@ -514,19 +514,19 @@ export default function QuizPage() {
                     color: "white",
                     border: "2px solid",
                     borderColor: !file || isLoading ? "var(--muted-dark)" : "var(--primary-dark)",
-                    boxShadow: !file || isLoading ? "none" : "0 4px 12px rgba(120, 147, 138, 0.3)",
+                    boxShadow: !file || isLoading ? "none" : "0 4px 12px color-mix(in srgb, var(--primary), transparent 30%)",
                     transform: !file || isLoading ? "none" : "translateY(0)",
                   }}
                   onMouseEnter={(e) => {
                     if (!file || isLoading) return;
                     e.currentTarget.style.transform = "translateY(-2px)";
-                    e.currentTarget.style.boxShadow = "0 6px 20px rgba(120, 147, 138, 0.4)";
+                    e.currentTarget.style.boxShadow = "0 6px 20px color-mix(in srgb, var(--primary), transparent 40%)";
                     e.currentTarget.style.background = "var(--primary-dark)";
                   }}
                   onMouseLeave={(e) => {
                     if (!file || isLoading) return;
                     e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "0 4px 12px rgba(120, 147, 138, 0.3)";
+                    e.currentTarget.style.boxShadow = "0 4px 12px color-mix(in srgb, var(--primary), transparent 30%)";
                     e.currentTarget.style.background = "var(--primary)";
                   }}
                   aria-describedby={file ? "upload-help" : "upload-error"}
