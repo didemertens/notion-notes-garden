@@ -1,26 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* UTOPIA FLUID SCALES */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Viewport configuration */
+  --fluid-min-width: 320;
+  --fluid-max-width: 1140;
+  --fluid-screen: 100vw;
+  --fluid-bp: calc(
+    (var(--fluid-screen) - var(--fluid-min-width) / 16 * 1rem) /
+    (var(--fluid-max-width) - var(--fluid-min-width))
+  );
+
+  /* Fluid Typography Scale */
+  --text-xs: clamp(0.75rem, 0.69rem + 0.26vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.79rem + 0.37vw, 1.0625rem);
+  --text-base: clamp(1rem, 0.91rem + 0.43vw, 1.25rem);
+  --text-lg: clamp(1.125rem, 1.01rem + 0.54vw, 1.4375rem);
+  --text-xl: clamp(1.25rem, 1.11rem + 0.65vw, 1.6875rem);
+  --text-2xl: clamp(1.5rem, 1.30rem + 0.98vw, 2.125rem);
+  --text-3xl: clamp(1.875rem, 1.58rem + 1.41vw, 2.75rem);
+  --text-4xl: clamp(2.25rem, 1.86rem + 1.89vw, 3.4375rem);
+  --text-5xl: clamp(2.625rem, 2.09rem + 2.61vw, 4.25rem);
+
+  /* Fluid Spacing Scale */
+  --space-3xs: clamp(0.25rem, 0.23rem + 0.11vw, 0.3125rem);
+  --space-2xs: clamp(0.5rem, 0.45rem + 0.22vw, 0.625rem);
+  --space-xs: clamp(0.75rem, 0.68rem + 0.33vw, 0.9375rem);
+  --space-s: clamp(1rem, 0.91rem + 0.43vw, 1.25rem);
+  --space-m: clamp(1.5rem, 1.36rem + 0.65vw, 1.875rem);
+  --space-l: clamp(2rem, 1.82rem + 0.87vw, 2.5rem);
+  --space-xl: clamp(3rem, 2.73rem + 1.30vw, 3.75rem);
+  --space-2xl: clamp(4rem, 3.64rem + 1.74vw, 5rem);
+  --space-3xl: clamp(6rem, 5.45rem + 2.61vw, 7.5rem);
+
+  /* One-up pairs for consistent spacing */
+  --space-3xs-2xs: clamp(0.25rem, 0.12rem + 0.65vw, 0.625rem);
+  --space-2xs-xs: clamp(0.5rem, 0.34rem + 0.76vw, 0.9375rem);
+  --space-xs-s: clamp(0.75rem, 0.57rem + 0.87vw, 1.25rem);
+  --space-s-m: clamp(1rem, 0.68rem + 1.52vw, 1.875rem);
+  --space-m-l: clamp(1.5rem, 1.14rem + 1.74vw, 2.5rem);
+  --space-l-xl: clamp(2rem, 1.36rem + 3.04vw, 3.75rem);
+  --space-xl-2xl: clamp(3rem, 2.27rem + 3.48vw, 5rem);
+  --space-2xl-3xl: clamp(4rem, 2.73rem + 6.09vw, 7.5rem);
+
+  /* Earth Tone Color Palette */
+  --background: #f1ddbf;
+  --foreground: #525e75;
+  --surface: #f5e6d3;
+  --surface-bright: #f9ede0;
+  --border: #e0ccb0;
+  --border-bright: #d4bc9a;
+  
+  /* Brand Colors - Earth Tones */
+  --primary: #78938a;
+  --primary-dark: #6b8379;
+  --primary-light: #8ba497;
+  --accent: #92ba92;
+  --accent-dark: #7fa67f;
+  --accent-light: #a8c8a8;
+  
+  /* Secondary Earth Tones */
+  --warm: #e6c4a0;
+  --warm-dark: #d4a574;
+  --cool: #8ba5b0;
+  --cool-dark: #7890a0;
+  --sage: #a0b3a0;
+  --sage-dark: #8ca08c;
+  --clay: #c4a584;
+  --clay-dark: #b0906a;
+  
+  /* Semantic Colors - Earth */
+  --muted: #9bb0c4;
+  --muted-dark: #7a8fa8;
+  --success: #92ba92;
+  --warning: #d4a574;
+  --error: #c49484;
+}
+
+/* CSS CUBE: Composition */
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack > * {
+  margin-block: 0;
+}
+
+.stack > * + * {
+  margin-block-start: var(--space, var(--space-s));
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space, var(--space-s));
+  justify-content: center;
+}
+
+.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space, var(--space-s));
+}
+
+.with-sidebar > :first-child {
+  flex-basis: var(--sidebar-target-width, 20rem);
+  flex-grow: 1;
+}
+
+.with-sidebar > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: var(--sidebar-content-min-width, 50%);
+}
+
+/* CSS CUBE: Utilities */
+.flow > * + * {
+  margin-block-start: var(--flow-space, var(--space-s));
+}
+
+.measure {
+  max-inline-size: var(--measure, 65ch);
+}
+
+.region {
+  padding-block: var(--region-space-vertical, var(--space-l-xl));
+}
+
+.wrapper {
+  max-inline-size: var(--wrapper-max-width, 75rem);
+  margin-inline: auto;
+  padding-inline: var(--wrapper-padding, var(--space-s-m));
 }
 
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-bright: var(--surface-bright);
+  --color-border: var(--border);
+  --color-border-bright: var(--border-bright);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-light: var(--accent-light);
+  --color-muted: var(--muted);
+  --color-muted-dark: var(--muted-dark);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  
+  /* Secondary Earth Tone Colors */
+  --color-warm: var(--warm);
+  --color-warm-dark: var(--warm-dark);
+  --color-cool: var(--cool);
+  --color-cool-dark: var(--cool-dark);
+  --color-sage: var(--sage);
+  --color-sage-dark: var(--sage-dark);
+  --color-clay: var(--clay);
+  --color-clay-dark: var(--clay-dark);
+  
+  /* Fonts */
+  --font-family-sans: var(--font-geist-sans);
+  --font-family-mono: var(--font-geist-mono);
+  
+  /* Utopia Fluid Typography */
+  --font-size-xs: var(--text-xs);
+  --font-size-sm: var(--text-sm);
+  --font-size-base: var(--text-base);
+  --font-size-lg: var(--text-lg);
+  --font-size-xl: var(--text-xl);
+  --font-size-2xl: var(--text-2xl);
+  --font-size-3xl: var(--text-3xl);
+  --font-size-4xl: var(--text-4xl);
+  --font-size-5xl: var(--text-5xl);
+  
+  /* Utopia Fluid Spacing */
+  --spacing-3xs: var(--space-3xs);
+  --spacing-2xs: var(--space-2xs);
+  --spacing-xs: var(--space-xs);
+  --spacing-s: var(--space-s);
+  --spacing-m: var(--space-m);
+  --spacing-l: var(--space-l);
+  --spacing-xl: var(--space-xl);
+  --spacing-2xl: var(--space-2xl);
+  --spacing-3xl: var(--space-3xl);
+  
+  /* Utopia One-up Pairs */
+  --spacing-3xs-2xs: var(--space-3xs-2xs);
+  --spacing-2xs-xs: var(--space-2xs-xs);
+  --spacing-xs-s: var(--space-xs-s);
+  --spacing-s-m: var(--space-s-m);
+  --spacing-m-l: var(--space-m-l);
+  --spacing-l-xl: var(--space-l-xl);
+  --spacing-xl-2xl: var(--space-xl-2xl);
+  --spacing-2xl-3xl: var(--space-2xl-3xl);
+  
+  /* Layout utilities */
+  --max-width-measure: 65ch;
+  --max-width-wrapper: 75rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Bold theme is always dark - no light mode toggle needed */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Elegant Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.display-serif {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+/* Enhanced focus and selection states */
+::selection {
+  background: var(--primary);
+  color: var(--background);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Bold Interactive Elements */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 300ms ease-out;
+  user-select: none;
+}
+
+.btn-secondary {
+  background: var(--surface-bright);
+  color: var(--foreground);
+  border: 1px solid var(--border-bright);
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* Minimal Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-m);
+  transition: all 300ms ease-out;
+}
+
+.card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-2px);
+}
+
+/* Handwritten style */
+.handwritten {
+  font-style: italic;
+  transform: rotate(-0.5deg);
+}
+
+/* Hero Section with Overlay */
+.hero-overlay {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    rgba(82, 94, 117, 0.7), 
+    rgba(120, 147, 138, 0.7)
+  );
+  color: white;
+  text-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.hero-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(146, 186, 146, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(160, 179, 160, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(196, 165, 132, 0.2) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  padding: var(--space-xl);
+}
+
+/* Section Backgrounds */
+.section-pink {
+  background: #f4e4e6;
+  padding: var(--space-xl) 0;
+}
+
+.section-sage {
+  background: #e8f0e8;
+  padding: var(--space-xl) 0;
+}
+
+.section-cream {
+  background: var(--surface-bright);
+  padding: var(--space-xl) 0;
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(241, 221, 191, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  padding: var(--space-s) 0;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-m);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-m);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.nav-links a {
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color 300ms ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
 }
